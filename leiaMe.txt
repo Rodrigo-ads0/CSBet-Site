@@ -1,28 +1,70 @@
---------------------------------------------------------------
-Bem-vindo ao Projeto CSBet
+# CSBet - Projeto de Desenvolvimento Web
 
-Este projeto é um desenvolvimento web para [CSBET]. O objetivo é [Desenvolvimento WEB].
+## Descrição
+Este projeto é uma aplicação web para [CSBet].
 
-Estrutura do Projeto:
+## Estrutura do Projeto
+-------------------------------------------------------------------------------------------------------------
+- **backend/**: Contém o código e a configuração do lado do servidor.
+  - **src/**: Código fonte principal do lado do servidor. Aqui, você colocará os arquivos de código que implementam a lógica de negócios, rotas da API, manipulação de dados, e quaisquer outros aspectos do servidor.
+    
+    - Exemplos de arquivos e pastas que você pode ter aqui incluem:
+      - `server.js`: Arquivo principal que inicializa o servidor.
+      - `routes/`: Arquivos que definem as rotas da API.
+      - `models/`: Arquivos que definem os modelos de dados, geralmente usados para interagir com o banco de dados.
+      - `controllers/`: Arquivos que contêm a lógica para lidar com solicitações e respostas.
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+- **frontend/**: Contém o código do lado do cliente.
+  - **src/**: Código fonte principal do lado do cliente. Aqui, você colocará os arquivos de código que definem a estrutura da aplicação, os componentes de interface do usuário e a lógica de interação.
+    - Exemplos de arquivos e pastas que você pode ter aqui incluem:
+      - `app.js`: Arquivo principal que inicializa a aplicação frontend.
+      - `components/`: Componentes de interface reutilizáveis.
+      - `services/`: Funções para interagir com o backend (por exemplo, chamadas API).
 
-Backend:
-- config/: Arquivos de configuração.
-- migrations/: Scripts de migração de banco de dados.
-- scripts/: Scripts auxiliares.
-- src/: Código-fonte do backend.
-- tests/: Testes para o backend.
+  - **assets/**: Contém recursos estáticos como imagens, ícones, fontes e outros arquivos que serão usados pela interface do usuário.
+    - Exemplos de arquivos que você pode ter aqui incluem:
+      - `images/`: Imagens usadas na aplicação.
+      - `fonts/`: Fontes personalizadas.
 
-Frontend:
-- assets/: Arquivos estáticos como imagens e fontes.
-- public/: Arquivos públicos que serão servidos diretamente.
-- src/: Código-fonte do frontend.
-- styles/: Arquivos de estilo.
+  - **public/**: Contém arquivos públicos que são acessíveis diretamente pelo navegador.Arquivos aqui não passam pelo processo de build e são servidos diretamente.
+    - Exemplos de arquivos que você pode ter aqui incluem:
+      - `index.html`: O arquivo HTML principal da aplicação.
+      - `favicon.ico`: Ícone que aparece na aba do navegador.
 
-Instruções de Instalação e Uso:
-- Descreva como configurar e executar o projeto localmente.
-- Instruções para executar o projeto.
+  - **styles/**: Contém arquivos de estilo CSS que definem a aparência da sua aplicação.
+    - Exemplos de arquivos que você pode ter aqui incluem:
+      - `main.css`: Arquivo CSS principal para estilização global.
+      - `components/`: CSS específico para estilizar componentes individuais.
 
-Nota:
-- Este projeto não está disponível para compartilhamento público.
 
---------------------------------------------------------------
+
+Exeplo:
+
+CSBET/
+│
+├── backend/
+│   └── src/
+│       ├── server.js
+│       ├── routes/
+│       ├── models/
+│       └── controllers/
+│
+└── frontend/
+    ├── src/
+    │   ├── app.js
+    │   ├── components/
+    │   └── services/
+    │
+    ├── assets/
+    │   ├── images/
+    │   └── fonts/
+    │
+    ├── public/
+    │   ├── index.html
+    │   └── favicon.ico
+    │
+    └── styles/
+        ├── main.css
+        └── components/
