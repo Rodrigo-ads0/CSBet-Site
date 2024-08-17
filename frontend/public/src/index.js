@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Função para buscar e exibir dados
   const fetchData = async () => {
     try {
-      const response = await fetch('https://csbet.shop/.netlify/functions/writeData', {
+      const response = await fetch('https://csbet.shop/netlify/functions/writeData', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Função para gravar dados
   const sendData = async () => {
     try {
-      const response = await fetch('https://csbet.shop/.netlify/functions/writeData', {
+      const response = await fetch('https://csbet.shop/netlify/functions/writeData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
