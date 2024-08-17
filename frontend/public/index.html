@@ -1,20 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/main.css"> <!-- Caminho relativo correto -->
-    <title>Site-CSBet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exibir Dados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #data-container {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <main>
-        <div id="container">
-            <h1>Gerar texto no Firebase</h1>
-            <div id="tela"></div>
-            <button id="gerarTexto">Clique aqui!</button>
-        </div>
-    </main>
+  <h1>Coletar Dados do Firestore</h1>
 
-    <script src="src/index.js"></script> <!-- Caminho relativo correto -->
+  <form id="add-data-form">
+    <input type="text" id="text-input" placeholder="Digite um texto" required>
+    <button type="submit">Adicionar Dados</button>
+  </form>
+
+  <button id="fetch-data">Coletar Dados</button>
+  <div id="data-container"></div>
+
+  <script src="src/index.js"></script>
 </body>
 </html>

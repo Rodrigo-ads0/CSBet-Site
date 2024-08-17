@@ -1,9 +1,9 @@
 [build]
   publish = "frontend/public"
-  functions = "netlify/functions"
+  functions = "netlify"
 
 [dev]
-  functions = "netlify/functions"
+  functions = "netlify"
   publish = "frontend/public"
 
 [build.environment]
@@ -11,5 +11,5 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  to = "/.netlify/:splat"
   status = 200

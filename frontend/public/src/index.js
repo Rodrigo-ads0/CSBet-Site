@@ -1,51 +1,58 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const tela = document.getElementById('tela');
-  
-  // Função para buscar e exibir dados
-  const fetchData = async () => {
-    try {
-      const response = await fetch('/.netlify/functions/writeData', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+// frontend/public/src/index.js
+
+// URL base da função do Netlify
+const FUNCTION_URL = '/.netlify/functions/functions';
+
+// Função para adicionar dados
+const addData = async (text) => {
+  try {
+    const response = await fetch(FUNCTION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
+
+    const result = await response.json();
+    alert(result.message || 'Erro ao adicionar dados');
+  } catch (error) {
+    console.error('Erro ao adicionar dados:', error);
+  }
+};
+
+// Função para coletar dados
+const fetchData = async () => {
+  try {
+    const response = await fetch(FUNCTION_URL);
+    const data = await response.json();
+
+    const dataContainer = document.getElementById('data-container');
+    dataContainer.innerHTML = ''; // Limpa os dados anteriores
+
+    if (data.length > 0) {
+      const list = document.createElement('ul');
+      data.forEach(text => {
+        const listItem = document.createElement('li');
+        listItem.textContent = text;
+        list.appendChild(listItem);
       });
-
-      if (!response.ok) {
-        throw new Error('Falha na solicitação');
-      }
-
-      const data = await response.json();
-      tela.textContent = JSON.stringify(data.data); // Exibe os dados no elemento com id "tela"
-    } catch (error) {
-      console.error('Erro ao buscar dados:', error.message);
-      tela.textContent = 'Erro ao carregar dados';
+      dataContainer.appendChild(list);
+    } else {
+      dataContainer.textContent = 'Nenhum dado encontrado.';
     }
-  };
+  } catch (error) {
+    console.error('Erro ao coletar dados:', error);
+  }
+};
 
-  fetchData(); // Chama a função para buscar e exibir dados
+// Configuração dos eventos
+document.getElementById('add-data-form').addEventListener('submit', (event) => {
+  event.preventDefault(); // Impede o envio padrão do formulário
 
-  // Adiciona o evento de clique ao botão
-  const gerarTextoButton = document.getElementById('gerarTexto');
-  gerarTextoButton.addEventListener('click', async () => {
-    try {
-      const response = await fetch('/.netlify/functions/writeData', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: 'Texto enviado pelo botão!' }) // Envia o texto a ser gravado
-      });
-
-      if (!response.ok) {
-        throw new Error('Falha na solicitação');
-      }
-
-      const result = await response.json();
-      console.log('Resposta do servidor:', result.message);
-      fetchData(); // Atualiza a tela após o envio dos dados
-    } catch (error) {
-      console.error('Erro ao enviar dados:', error.message);
-    }
-  });
+  const textInput = document.getElementById('text-input');
+  addData(textInput.value);
+  textInput.value = ''; // Limpa o campo de entrada
 });
+
+document.getElementById('fetch-data').addEventListener('click', fetchData);
