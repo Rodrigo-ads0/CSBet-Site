@@ -4,6 +4,7 @@
 
 [dev]
   functions = "netlify/functions"
+  publish = "frontend/public"
 
 [build.environment]
   NODE_VERSION = "20.16.0"

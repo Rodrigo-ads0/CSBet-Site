@@ -2,15 +2,16 @@
   "name": "csbet",
   "version": "1.0.0",
   "description": "Descrição do seu projeto",
-  "main": "src/server.js",
+  "main": "netlify/functions/writeData.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "netlify dev",
     "build": "echo 'No build script' && exit 0",
-    "dev": "nodemon src/server.js"
+    "dev": "netlify dev"
   },
   "dependencies": {
     "express": "^4.19.2",
-    "firebase": "^10.13.0"
+    "firebase": "^10.13.0",
+    "firebase-admin": "^12.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

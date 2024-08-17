@@ -1,62 +1,84 @@
-const { initializeApp } = require('firebase/app');
-const { getDatabase, ref, set, get, child } = require('firebase/database');
+const admin = require('firebase-admin');
+const path = require('path');
 
+// Caminho para o arquivo JSON da chave de serviço
+const serviceAccountPath = path.resolve(__dirname, '../keys/serviceAccountKey.json'); // Ajuste o caminho se necessário
+
+// Configuração do Firebase
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "csbet-00001.firebaseapp.com",
-  projectId: "csbet-00001",
-  storageBucket: "csbet-00001.appspot.com",
-  messagingSenderId: "379404731204",
-  appId: "1:379404731204:web:94eb3e29df6c0a6c214d11",
   databaseURL: "https://csbet-00001-default-rtdb.firebaseio.com/"
 };
 
-// Inicializar o Firebase
-initializeApp(firebaseConfig);
-const database = getDatabase();
+// Inicializar o Firebase Admin SDK
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccountPath),
+    databaseURL: firebaseConfig.databaseURL
+  });
+}
 
-exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
+const db = admin.database();
+
+// Função para obter a referência do banco de dados
+const getRef = (path) => db.ref(path);
+
+// Função para definir dados no banco de dados
+const setData = async (path, data) => {
+  await db.ref(path).set(data);
+};
+
+// Função para remover dados do banco de dados
+const removeData = async (path) => {
+  await db.ref(path).remove();
+};
+
+// Função para obter dados do banco de dados
+const getData = async (path) => {
+  const snapshot = await db.ref(path).once('value');
+  return snapshot.val();
+};
+
+// Função principal para lidar com a solicitação
+exports.handler = async (event) => {
+  if (event.httpMethod === 'POST') {
+    try {
+      const requestBody = JSON.parse(event.body);
+      const text = requestBody.text || 'Texto padrão'; // Defina um texto padrão se não for enviado
+
+      await setData('test/data', { message: text });
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: 'Dados gravados com sucesso' }),
+      };
+    } catch (error) {
+      console.error('Erro ao gravar dados:', error.message);
+
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'Erro ao gravar dados', details: error.message }),
+      };
+    }
+  } else if (event.httpMethod === 'GET') {
+    try {
+      const data = await getData('test/data');
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ data }),
+      };
+    } catch (error) {
+      console.error('Erro ao obter dados:', error.message);
+
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'Erro ao obter dados', details: error.message }),
+      };
+    }
+  } else {
     return {
       statusCode: 405,
-      body: 'Método não permitido'
-    };
-  }
-
-  let body;
-
-  try {
-    body = JSON.parse(event.body);
-  } catch (err) {
-    return {
-      statusCode: 400,
-      body: 'Corpo da requisição inválido'
-    };
-  }
-
-  const { path, data } = body;
-
-  try {
-    const testPath = 'testConnection';
-    const testData = { message: 'Conexão com Firebase bem-sucedida!' };
-    await set(ref(database, testPath), testData);
-
-    const snapshot = await get(child(ref(database), testPath));
-    const testMessage = snapshot.val();
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        success: true,
-        message: 'Dados gravados com sucesso!',
-        testMessage
-      })
-    };
-  } catch (error) {
-    console.error('Erro ao gravar dados:', error.message);
-    return {
-      statusCode: 500,
-      body: 'Erro ao gravar dados: ' + error.message
+      body: JSON.stringify({ error: 'Método não permitido' }),
     };
   }
 };
