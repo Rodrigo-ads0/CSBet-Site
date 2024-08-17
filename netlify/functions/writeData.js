@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 const path = require('path');
 
 // Caminho para o arquivo JSON da chave de serviço
-const serviceAccountPath = path.resolve(__dirname, '../keys/serviceAccountKey.json'); // Ajuste o caminho se necessário
+const serviceAccountPath = path.resolve(__dirname, '../keys/serviceAccountKey.json');
 
 // Configuração do Firebase
 const firebaseConfig = {
