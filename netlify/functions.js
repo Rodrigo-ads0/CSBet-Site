@@ -1,11 +1,14 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('./keys/serviceAccountKey.json');
 
 // Inicializar o Firebase Admin SDK
 if (!admin.apps.length) {
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://csbet-00001-default-rtdb.firebaseio.com" // Substitua com o URL do seu banco de dados
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    }),
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
   });
 }
 
