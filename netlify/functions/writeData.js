@@ -40,22 +40,38 @@ const getData = async (path) => {
 
 // Função principal para lidar com a solicitação
 exports.handler = async (event) => {
-  if (event.httpMethod === 'POST') {
+  let response;
+  const headers = {
+    'Access-Control-Allow-Origin': '*', // Permitir todas as origens
+    'Access-Control-Allow-Methods': 'GET, POST', // Permitir métodos GET e POST
+    'Access-Control-Allow-Headers': 'Content-Type', // Permitir cabeçalhos Content-Type
+  };
+
+  if (event.httpMethod === 'OPTIONS') {
+    // Responder às solicitações prévias (preflight)
+    response = {
+      statusCode: 204,
+      headers: headers,
+      body: '',
+    };
+  } else if (event.httpMethod === 'POST') {
     try {
       const requestBody = JSON.parse(event.body);
       const text = requestBody.text || 'Texto padrão'; // Defina um texto padrão se não for enviado
 
       await setData('test/data', { message: text });
 
-      return {
+      response = {
         statusCode: 200,
+        headers: headers,
         body: JSON.stringify({ message: 'Dados gravados com sucesso' }),
       };
     } catch (error) {
       console.error('Erro ao gravar dados:', error.message);
 
-      return {
+      response = {
         statusCode: 500,
+        headers: headers,
         body: JSON.stringify({ error: 'Erro ao gravar dados', details: error.message }),
       };
     }
@@ -63,22 +79,27 @@ exports.handler = async (event) => {
     try {
       const data = await getData('test/data');
 
-      return {
+      response = {
         statusCode: 200,
+        headers: headers,
         body: JSON.stringify({ data }),
       };
     } catch (error) {
       console.error('Erro ao obter dados:', error.message);
 
-      return {
+      response = {
         statusCode: 500,
+        headers: headers,
         body: JSON.stringify({ error: 'Erro ao obter dados', details: error.message }),
       };
     }
   } else {
-    return {
+    response = {
       statusCode: 405,
+      headers: headers,
       body: JSON.stringify({ error: 'Método não permitido' }),
     };
   }
+
+  return response;
 };
