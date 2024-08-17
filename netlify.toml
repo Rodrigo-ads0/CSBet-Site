@@ -5,16 +5,3 @@
 [dev]
   functions = "netlify"
   publish = "frontend/public"
-
-[build.environment]
-  NODE_VERSION = "20.16.0"
-  FIREBASE_PROJECT_ID = "csbet-00001"
-  FIREBASE_PRIVATE_KEY_ID = "b18a3fa881359c91f363265614c505a317788d87"
-  FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxm529dsrjGBAE\n8T/QFIhh1BYqnT5lQ4tm0pkFjS11VzWEkg5H4cpy7PA1yCVyJCaf7hv4tUSmsUc4\nMlNLw3F5108/kPjx61/Gz6QYP/beE6Hsq/rKtzL1zdT2zkZK425X0E0g27qRtKFW\nciQdQrCyC2SLmhetzRusFIsnT0zFAZF7Rq1Pwsx64QOCdzsfVTzKxxUo5A9px68g\nsKqe/qAYk5M2ShcWpOZTWcWx2UInK2Ftc3HpB6gdP3N8Baif5HC7lYXzpVMdrYXK\nD09ez9PIY6lokQd4QI8/67jXxyOmOlxpTynSqPFfd7ZxfXk+rYxqJDq6n/sJ//IG\n5iSfnyz9AgMBAAECggEAGGYvtR3K8Qg2+SrYUKJlewULF4cbEYfGMJW5amMS7eYR\nZtk2x4a8DG5C8KyCgmv3d2ybYJ8sY3cCuPRm74dVwT6EN1AX9woWEgan/SHabPdG\n/S/CKBOjV1PT0CUV0IduevdVhTBScN5e9LSBBBkLk6YPhcMhQiHljY4T8M5K1lxu\ndP7WdmM8K55EjOPh4OHQ9WOHXMshblnD+sg5VCyZGRfnTLXYYI5PFizLOlomyqx0\neA8wX8n67Zd3ajtonrHai+jFV//ghQ0mDo7uEjyY5z4g+4qUU6E4pfJRIwgjlCn7\nDUY1SjAvVbaynvST3Iz7YubGATlimxgi9iLqIL+HuQKBgQDVfXVx/CLDq7FPxqHx\noldSa2p7kLOpL+BCgdSxRqTa7rd7qsX5nF3diyL0aKbliEZRvAm5kESEuF+TzO4S\ne2co3Ue01IrvjkkilRILpgHANHxkCafS3etSIXHXw7feFUm9OASkKHVR0uUSmQQs\nRdf31/9lFgqevmkaq7ldpNFjBQKBgQDU+RTtd6yO2innYUIMGTQk3rgAaREUbb+F\nkfc3yEisacltj+734iRpYWu+Tx8fOqoVswd7XsmO5tCIiN/fuiy77A6dXucxT9ZD\naWTVFGwWnEw0tekhi8fI97/ueaPYIr+qkOo6XCEVYEkgzzhP/U9doAlbBxb0QVTx\nhaUWxo0zmQKBgGrfq3OsbRrXUKRHI7r7Mguoil3hSo9f0Dx7EibM3qpa5q+aBhG3\nHaZSiOUhnqs5VTqFj7i9aA+o3O/4nxXRgQsL+2GjJQpXiHUveyEpsaaun7bUvpbp\nUWyEIaGJ8PnUXl3DNU+YkWKs2NA+mcAwFrWUA95u8lIVsDgRz3H5mHihAoGARrMZ\nW2urAREzb/g9cL69LLAy7Q/z95AnUDQQmZgHaBUGJTTu46NS6xjIJ7kkX72d0O5J\nwY7J4oKFH44wo5iuWQQYJe3nWdtjCaXnL0VETI0+TxFEfzpj7Dcyo/wFhC6k6f6J\ngy4qXWpFXHrt+r/gpPgHowxLdnJpvHPdRh5LqaECgYEAmSI9Y1vON7fNRprh15Pm\nUxAyJw5X7206DYZu/TOxvjUAkcwKHD8I/dXuGp9Kf3R6Og7v1KA11qhEe3Pzkq4I\nxa+UZoDf1jXiVzWMVFMo+EQL6AY8QAWWvwpwyL1oXw5MDVoyGsRi4mp0+Li7NrIe\nDFgQzTlbDKCu7EPh50UI8rE=\n-----END PRIVATE KEY-----\n"
-  FIREBASE_CLIENT_EMAIL = "firebase-adminsdk-gcom4@csbet-00001.iam.gserviceaccount.com"
-  FIREBASE_CLIENT_ID = "107491425787729140613"
-  FIREBASE_AUTH_URI = "https://accounts.google.com/o/oauth2/auth"
-  FIREBASE_TOKEN_URI = "https://oauth2.googleapis.com/token"
-  FIREBASE_AUTH_PROVIDER_X509_CERT_URL = "https://www.googleapis.com/oauth2/v1/certs"
-  FIREBASE_CLIENT_X509_CERT_URL = "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-gcom4%40csbet-00001.iam.gserviceaccount.com"
-  FIREBASE_DATABASE_URL = "https://csbet-00001-default-rtdb.firebaseio.com"

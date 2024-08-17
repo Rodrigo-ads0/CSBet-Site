@@ -10,8 +10,7 @@ const addData = async (text) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text }),
+      },      body: JSON.stringify({ text }),
     });
 
     const result = await response.json();

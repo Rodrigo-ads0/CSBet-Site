@@ -2,14 +2,19 @@ const admin = require('firebase-admin');
 
 // Inicializar o Firebase Admin SDK
 if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    }),
-    databaseURL: process.env.FIREBASE_DATABASE_URL,
-  });
+  try {
+    admin.initializeApp({
+      credential: admin.credential.cert({
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      }),
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
+    });
+  } catch (error) {
+    console.error('Erro ao inicializar o Firebase Admin SDK:', error);
+    throw error; // Re-throw the error so Netlify Dev logs it
+  }
 }
 
 const db = admin.firestore();
@@ -30,6 +35,7 @@ const addData = async (data) => {
       body: JSON.stringify({ message: 'Texto adicionado com sucesso!' }),
     };
   } catch (error) {
+    console.error('Erro ao adicionar texto:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Erro ao adicionar texto', details: error.message }),
@@ -47,6 +53,7 @@ const readData = async () => {
       body: JSON.stringify(texts),
     };
   } catch (error) {
+    console.error('Erro ao coletar textos:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Erro ao coletar textos', details: error.message }),
