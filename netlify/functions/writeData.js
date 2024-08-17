@@ -1,7 +1,6 @@
 const { initializeApp } = require('firebase/app');
 const { getDatabase, ref, set } = require('firebase/database');
 
-// Sua configuração do Firebase
 const firebaseConfig = {
   apiKey: "API_KEY",
   authDomain: "csbet-00001.firebaseapp.com",
@@ -16,24 +15,38 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const database = getDatabase();
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'POST') {
-    const { path, data } = JSON.parse(event.body);
-    try {
-      await set(ref(database, path), data);
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: 'Dados gravados com sucesso!' }),
-      };
-    } catch (error) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ message: 'Erro ao gravar dados: ' + error.message }),
-      };
-    }
+exports.handler = async (event, context) => {
+  // Verifica se o método é POST
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: 'Método não permitido'
+    };
   }
-  return {
-    statusCode: 405,
-    body: JSON.stringify({ message: 'Método não permitido' }),
-  };
+
+  let body;
+
+  try {
+    body = JSON.parse(event.body);
+  } catch (err) {
+    return {
+      statusCode: 400,
+      body: 'Corpo da requisição inválido'
+    };
+  }
+
+  const { path, data } = body;
+
+  try {
+    await set(ref(database, path), data);
+    return {
+      statusCode: 200,
+      body: 'Dados gravados com sucesso!'
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: 'Erro ao gravar dados: ' + error.message
+    };
+  }
 };

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     generateTextButton.addEventListener('click', async () => {
       try {
-        const response = await fetch('/api/writeData', { // Use a URL da função do Netlify
+        const response = await fetch('/api/writeData', {  // Use o endpoint relativo
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
