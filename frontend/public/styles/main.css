@@ -1,45 +1,178 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0; /* Opcional: para uma cor de fundo leve */
+    box-sizing: border-box;
 }
 
-main {
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #1b1b1b;
+    color: #fff;
+}
+
+header {
+    position: relative;
+    text-align: center;
+}
+
+.banner img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.profile-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-picture {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    object-fit: cover;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+}
+
+.site-name {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-top: 10px;
+}
+
+.menu {
+    background-color: #222;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.menu ul {
+    list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 30px;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+/* Estilos anteriores... */
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+    font-size: 1.3rem; /* Tamanho padrão */
+}
+
+/* Tornando o texto do menu responsivo */
+@media (max-width: 1200px) {
+    .menu a {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .menu a {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .menu a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .menu a {
+        font-size: 0.8rem;
+    }
+}
+
+.menu a:hover {
+    color: #52299e;
+}
+
+.menu a:hover::after {
     width: 100%;
 }
 
-#container {
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
+
+/* Estilos anteriores... */
+
+/* Estilos para os pop-ups */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-    background-color: #fff; /* Opcional: cor de fundo para destacar o container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: sombra leve para o container */
+    align-items: center;
 }
 
-#tela {
-    height: 100px;
-    width: 200px;
-    border: 1px solid black;
+.popup-content {
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.popup h2 {
+    color: #52299e;
     margin-bottom: 20px;
 }
 
-h1 {
-    font-size: 20px;
-    margin-bottom: 20px;
+.popup p {
+    font-size: 1rem;
+    color: #ccc;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 1.5rem;
     cursor: pointer;
+}
+
+.close:hover {
+    color: #ffa500;
 }
