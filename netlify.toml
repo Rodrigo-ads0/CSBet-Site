@@ -2,6 +2,12 @@
   publish = "frontend/public"
   functions = "netlify/functions"
 
+[dev]
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20.16.0"
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
